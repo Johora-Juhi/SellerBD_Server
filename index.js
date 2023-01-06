@@ -210,26 +210,26 @@ async function run() {
         });
 
         // delete products 
-        // app.delete('/product/:id', verifyJwt, verifySeller, async (req, res) => {
-        //     const id = req.params.id;
-        //     const filter = { _id: ObjectId(id) };
-        //     const result = await productsCollection.deleteOne(filter);
-        //     res.send(result);
-        // });
+        app.delete('/product/:id', verifyJwt, verifySeller, async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: ObjectId(id) };
+            const result = await productsCollection.deleteOne(filter);
+            res.send(result);
+        });
 
         // advertise product 
-        // app.put('/product/:id', verifyJwt, verifySeller, async (req, res) => {
-        //     const id = req.params.id;
-        //     const filter = { _id: ObjectId(id) }
-        //     const options = { upsert: true };
-        //     const updatedDoc = {
-        //         $set: {
-        //             advertise: true
-        //         }
-        //     }
-        //     const result = await productsCollection.updateOne(filter, updatedDoc, options);
-        //     res.send(result);
-        // });
+        app.put('/product/:id', verifyJwt, verifySeller, async (req, res) => {
+            const id = req.params.id;
+            const filter = { _id: ObjectId(id) }
+            const options = { upsert: true };
+            const updatedDoc = {
+                $set: {
+                    advertise: true
+                }
+            }
+            const result = await productsCollection.updateOne(filter, updatedDoc, options);
+            res.send(result);
+        });
 
         // get the advertised products 
         // app.get('/advertiseproducts', async (req, res) => {
