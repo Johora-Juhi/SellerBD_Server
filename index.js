@@ -193,21 +193,21 @@ async function run() {
             res.send(result);
         });
 
-        // // getting seller product 
-        // app.get('/myproducts', verifyJwt, verifySeller, async (req, res) => {
-        //     const email = req.query.email;
-        //     console.log(email);
-        //     const decodedEmail = req.decoded.email;
+        // getting seller product 
+        app.get('/myproducts', verifyJwt, verifySeller, async (req, res) => {
+            const email = req.query.email;
+            console.log(email);
+            const decodedEmail = req.decoded.email;
 
-        //     if (email !== decodedEmail) {
-        //         return res.status(403).send({ message: 'forbidden access' })
-        //     }
-        //     const query = {
-        //         email: email
-        //     }
-        //     const products = await productsCollection.find(query).toArray();
-        //     res.send(products);
-        // });
+            if (email !== decodedEmail) {
+                return res.status(403).send({ message: 'forbidden access' })
+            }
+            const query = {
+                email: email
+            }
+            const products = await productsCollection.find(query).toArray();
+            res.send(products);
+        });
 
         // delete products 
         // app.delete('/product/:id', verifyJwt, verifySeller, async (req, res) => {
