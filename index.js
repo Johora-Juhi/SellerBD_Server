@@ -2,7 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const port = process.env.PORT || 5000;
 const jwt = require('jsonwebtoken');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 require('dotenv').config();
 
 const app = express();
@@ -187,11 +187,11 @@ async function run() {
         });
 
         // add products to the collection 
-        // app.post('/categories', verifyJwt, verifySeller, async (req, res) => {
-        //     const product = req.body;
-        //     const result = await productsCollection.insertOne(product);
-        //     res.send(result);
-        // });
+        app.post('/categories', verifyJwt, verifySeller, async (req, res) => {
+            const product = req.body;
+            const result = await productsCollection.insertOne(product);
+            res.send(result);
+        });
 
         // // getting seller product 
         // app.get('/myproducts', verifyJwt, verifySeller, async (req, res) => {
