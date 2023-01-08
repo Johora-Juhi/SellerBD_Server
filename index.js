@@ -168,7 +168,7 @@ async function run() {
             const filterEmail = { email: email }
             const result = await usersCollection.updateOne(filterId, updatedDoc);
             const updatedProducts = await productsCollection.updateMany(filterEmail, updatedDoc)
-            res.send(result);
+            res.send(result,updatedProducts);
         });
 
         // get category types 
@@ -232,13 +232,13 @@ async function run() {
         });
 
         // get the advertised products 
-        // app.get('/advertiseproducts', async (req, res) => {
-        //     const query = {
-        //         advertise: true
-        //     }
-        //     const products = await productsCollection.find(query).toArray();
-        //     res.send(products);
-        // });
+        app.get('/advertiseproducts', async (req, res) => {
+            const query = {
+                advertise: true
+            }
+            const products = await productsCollection.find(query).toArray();
+            res.send(products);
+        });
 
         // place order 
         app.post('/orders', verifyJwt, verifyBuyer, async (req, res) => {
